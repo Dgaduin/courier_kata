@@ -10,7 +10,10 @@ namespace CourierKata.Domain
 
         public HeavyParcel(int weight)
         {
+            if (weight <= 0) throw new ArgumentOutOfRangeException(nameof(weight), "Value needs to be positive");
 
+            Weight = weight;
+            Cost = 50;
         }
     }
 }
