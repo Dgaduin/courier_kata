@@ -15,6 +15,13 @@ namespace CourierKata.Test
         {
             Action a = () => new Parcel(height, 1, 1);
             a.Should().ThrowExactly<ArgumentOutOfRangeException>().WithMessage("Value needs to be positive (Parameter 'height')");
-        }        
+        }
+
+        [Fact]
+        public void Parcel_with_0_height_should_throw_Argument_out_of_range()
+        {
+            Action a = () => new Parcel(0, 1, 1);
+            a.Should().ThrowExactly<ArgumentOutOfRangeException>().WithMessage("Value needs to be positive (Parameter 'height')");
+        }
     }
 }
