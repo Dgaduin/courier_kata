@@ -6,7 +6,7 @@ namespace CourierKata.Domain
 
         public OrderItemType Type { get { return OrderItemType.SeedyShipping; } }
 
-        public SpeedyShipping(int price)
+        internal SpeedyShipping(int price)
         {
             Cost = price * 2;
         }
