@@ -1,6 +1,7 @@
 using System;
 using CourierKata.Domain;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace CourierKata.Test
@@ -72,6 +73,21 @@ namespace CourierKata.Test
         }
 
         [Theory]
+        [InlineData(10, 150, 2)]
+        [InlineData(140, 3, 45)]
+        [InlineData(6, 75, 532)]
+        [InlineData(10, 100, 2)]
+        [InlineData(100, 3, 45)]
+        [InlineData(6, 20, 100)]
+        public void Parcel_with_size_XL_should_have_cost_of_25(int height, int width, int length)
+        {
+            var p = new Parcel(height, width, length);
+            using var scope = new AssertionScope();
+            p.Size.Should().Be(ParcelSize.Xl);
+            p.Cost.Should().Be(25);
+        }
+
+        [Theory]
         [InlineData(10, 74, 2)]
         [InlineData(91, 3, 45)]
         [InlineData(6, 23, 85)]
@@ -85,6 +101,24 @@ namespace CourierKata.Test
         {
             var p = new Parcel(height, width, length);
             p.Size.Should().Be(ParcelSize.L);
+        }
+
+        [Theory]
+        [InlineData(10, 74, 2)]
+        [InlineData(91, 3, 45)]
+        [InlineData(6, 23, 85)]
+        [InlineData(10, 99, 2)]
+        [InlineData(99, 3, 45)]
+        [InlineData(6, 20, 99)]
+        [InlineData(10, 50, 2)]
+        [InlineData(50, 3, 45)]
+        [InlineData(6, 20, 50)]
+        public void Parcel_with_size_L_should_have_cost_of_15(int height, int width, int length)
+        {
+            var p = new Parcel(height, width, length);
+            using var scope = new AssertionScope();
+            p.Size.Should().Be(ParcelSize.L);
+            p.Cost.Should().Be(15);
         }
 
         [Theory]
@@ -104,6 +138,24 @@ namespace CourierKata.Test
         }
 
         [Theory]
+        [InlineData(12, 4, 2)]
+        [InlineData(4, 34, 6)]
+        [InlineData(6, 6, 43)]
+        [InlineData(10, 4, 2)]
+        [InlineData(9, 3, 10)]
+        [InlineData(6, 10, 5)]
+        [InlineData(49, 5, 2)]
+        [InlineData(5, 49, 2)]
+        [InlineData(6, 4, 49)]
+        public void Parcel_with_size_M_should_have_cost_of_8(int height, int width, int length)
+        {
+            var p = new Parcel(height, width, length);
+            using var scope = new AssertionScope();
+            p.Size.Should().Be(ParcelSize.M);
+            p.Cost.Should().Be(8);
+        }
+
+        [Theory]
         [InlineData(4, 4, 2)]
         [InlineData(4, 6, 6)]
         [InlineData(6, 6, 8)]
@@ -117,6 +169,24 @@ namespace CourierKata.Test
         {
             var p = new Parcel(height, width, length);
             p.Size.Should().Be(ParcelSize.S);
+        }
+
+        [Theory]
+        [InlineData(4, 4, 2)]
+        [InlineData(4, 6, 6)]
+        [InlineData(6, 6, 8)]
+        [InlineData(6, 4, 9)]
+        [InlineData(9, 3, 7)]
+        [InlineData(6, 9, 5)]
+        [InlineData(1, 5, 2)]
+        [InlineData(5, 1, 2)]
+        [InlineData(6, 4, 1)]
+        public void Parcel_with_size_S_should_have_cost_of_3(int height, int width, int length)
+        {
+            var p = new Parcel(height, width, length);
+            using var scope = new AssertionScope();
+            p.Size.Should().Be(ParcelSize.S);
+            p.Cost.Should().Be(3);
         }
     }
 }
