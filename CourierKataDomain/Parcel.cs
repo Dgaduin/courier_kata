@@ -9,6 +9,9 @@ namespace CourierKata.Domain
         public int Width { get; }
         public int Length { get; }
         public int Weight { get; }
+        public ParcelSize Size { get; }
+        public int Cost { get; }
+
         public Parcel(int height, int width, int length, int weight)
         {
             if (height <= 0) throw new ArgumentOutOfRangeException(nameof(height), "Value needs to be positive");
@@ -20,39 +23,39 @@ namespace CourierKata.Domain
             Width = width;
             Length = length;
             Weight = weight;
-        }
 
-        public ParcelSize Size
-        {
-            get
+            int cost = 0;
+
+            if (Height >= 100 || Width >= 100 || Length >= 100)
             {
-                if (Height >= 100 || Width >= 100 || Length >= 100)
-                    return ParcelSize.Xl;
-                if (Height >= 50 || Width >= 50 || Length >= 50)
-                    return ParcelSize.L;
-                if (Height >= 10 || Width >= 10 || Length >= 10)
-                    return ParcelSize.M;
-                if (Height >= 1 || Width >= 1 || Length >= 1)
-                    return ParcelSize.S;
-
-                return ParcelSize.Invalid;
+                Size = ParcelSize.Xl;
+                cost = 25;
+                if (Weight > WeightLimits.XL)
+                    cost += (Weight - WeightLimits.XL) * 2;
             }
-        }
-
-        public int Cost
-        {
-            get
+            else if (Height >= 50 || Width >= 50 || Length >= 50)
             {
-                if (Size == ParcelSize.Xl)
-                    return 25;
-                if (Size == ParcelSize.L)
-                    return 15;
-                if (Size == ParcelSize.M)
-                    return 8;
-                if (Size == ParcelSize.S)
-                    return 3;
-                return -1;
+                Size = ParcelSize.L;
+                cost = 15;
+                if (Weight > WeightLimits.L)
+                    cost += (Weight - WeightLimits.L) * 2;
             }
+            else if (Height >= 10 || Width >= 10 || Length >= 10)
+            {
+                Size = ParcelSize.M;
+                cost = 8;
+                if (Weight > WeightLimits.M)
+                    cost += (Weight - WeightLimits.M) * 2;
+            }
+            else if (Height >= 1 || Width >= 1 || Length >= 1)
+            {
+                Size = ParcelSize.S;
+                cost = 3;
+                if (Weight > WeightLimits.S)
+                    cost += (Weight - WeightLimits.S) * 2;
+            }
+            Cost = cost;
+
         }
     }
 }
