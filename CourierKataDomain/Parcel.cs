@@ -4,6 +4,7 @@ namespace CourierKata.Domain
 {
     public class Parcel : IOrderItem
     {
+        public OrderItemType Type { get { return OrderItemType.Parcel; } }
         public int Height { get; }
         public int Width { get; }
         public int Length { get; }
