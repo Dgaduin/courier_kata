@@ -39,5 +39,21 @@ namespace CourierKata.Test
             order.TotalCost.Should().Be(102, "(25+15+8+3)*2=102");
             order.Items.Should().HaveCount(5, "there are 4 parcels + speedy shiping");
         }
+
+        [Fact]
+        public void Small_parcel_discount_should_be_applied_on_every_4th_small_parcel()
+        {
+            IList<IOrderItem> items = new List<IOrderItem> {
+                new Parcel(4, 4, 2,1),
+                new Parcel(4, 4, 2,1),
+                new Parcel(4, 4, 2,1),
+                new Parcel(4, 4, 2,1)
+            };
+            var order = new Order(items, true);
+
+            using var scope = new AssertionScope();
+            order.TotalCost.Should().Be(9, "4*3 - 3 =9");
+            order.Items.Should().HaveCount(5, "there are 4 parcels + small parcel discount");
+        }
     }
 }
