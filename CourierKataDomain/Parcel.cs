@@ -10,7 +10,7 @@ namespace CourierKata.Domain
 
         public Parcel(int height, int width, int length)
         {
-            if (height < 0) throw new ArgumentOutOfRangeException(nameof(height),"Value needs to be positive");
+            if (height <= 0) throw new ArgumentOutOfRangeException(nameof(height),"Value needs to be positive");
         }
     }
 }
