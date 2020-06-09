@@ -87,7 +87,7 @@ namespace CourierKata.Test
             p.Size.Should().Be(ParcelSize.L);
         }
 
-         [Theory]
+        [Theory]
         [InlineData(12, 4, 2)]
         [InlineData(4, 34, 6)]
         [InlineData(6, 6, 43)]
@@ -101,6 +101,22 @@ namespace CourierKata.Test
         {
             var p = new Parcel(height, width, length);
             p.Size.Should().Be(ParcelSize.M);
+        }
+
+        [Theory]
+        [InlineData(4, 4, 2)]
+        [InlineData(4, 6, 6)]
+        [InlineData(6, 6, 8)]
+        [InlineData(6, 4, 9)]
+        [InlineData(9, 3, 7)]
+        [InlineData(6, 9, 5)]
+        [InlineData(1, 5, 2)]
+        [InlineData(5, 1, 2)]
+        [InlineData(6, 4, 1)]
+        public void Parcel_with_a_dimension_below_10_should_have_size_S(int height, int width, int length)
+        {
+            var p = new Parcel(height, width, length);
+            p.Size.Should().Be(ParcelSize.S);
         }
     }
 }
