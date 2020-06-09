@@ -27,6 +27,8 @@ namespace CourierKata.Domain
                     return ParcelSize.Xl;
                 if (Height >= 50 || Width >= 50 || Length >= 50)
                     return ParcelSize.L;
+                if (Height >= 10 || Width >= 10 || Length >= 10)
+                    return ParcelSize.M;
                 return ParcelSize.Invalid;
             }
         }
