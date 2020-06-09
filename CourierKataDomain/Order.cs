@@ -18,6 +18,11 @@ namespace CourierKata.Domain
         public int SumOrderItems()
         {
             int value = Items.Sum(x => x.Cost);
+            if (SpeedyShipping)
+            {
+                Items.Add(new SpeedyShipping(value));
+                value += value;
+            }
             TotalCost = value;
             return value;
         }

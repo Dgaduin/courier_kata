@@ -20,7 +20,9 @@ namespace CourierKata.Test
                 new Parcel(4, 4, 2) //S
             };
             var order = new Order(items);
+
             order.SumOrderItems();
+
             order.TotalCost.Should().Be(51, "25+15+8+3=51");
         }
 
@@ -34,7 +36,9 @@ namespace CourierKata.Test
                 new Parcel(4, 4, 2) //S
             };
             var order = new Order(items, true);
+
             order.SumOrderItems();
+
             using var scope = new AssertionScope();
             order.TotalCost.Should().Be(102, "(25+15+8+3)*2=102");
             order.Items.Should().HaveCount(5, "there are 4 parcels + speedy shiping");
