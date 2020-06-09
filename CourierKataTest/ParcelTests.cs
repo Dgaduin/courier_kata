@@ -3,7 +3,7 @@ using Xunit;
 
 namespace CourierKataTest
 {
-    public class UnitTest1
+    public class ParcelTests
     {
         [Fact]
         public void Test1()
