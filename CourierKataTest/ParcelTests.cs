@@ -205,5 +205,26 @@ namespace CourierKata.Test
             p.Size.Should().Be(ParcelSize.S);
             p.Cost.Should().Be(3);
         }
+
+        [Theory]
+        [InlineData(10, 150, 2, 12, 29, "it's an XL package with 2kg over the limit")]
+        [InlineData(140, 3, 45, 16, 37, "it's an XL package with 6kg over the limit")]
+        [InlineData(6, 75, 532, 11, 27, "it's an XL package with 1kg over the limit")]
+        [InlineData(6, 75, 532, 7, 25, "it's an XL package with 1kg over the limit")]
+        [InlineData(6, 23, 85, 7, 17, "it's an L package with 1kg over the limit")]
+        [InlineData(10, 99, 2, 11, 25, "it's an L package with 5kg over the limit")]
+        [InlineData(99, 3, 45, 9, 21, "it's an L package with 3kg over the limit")]
+        [InlineData(12, 4, 2, 4, 10, "it's an M package with 1kg over the limit")]
+        [InlineData(4, 34, 6, 6, 14, "it's an M package with 3kg over the limit")]
+        [InlineData(6, 6, 43, 7, 16, "it's an M package with 4kg over the limit")]
+        [InlineData(4, 6, 6, 2, 5, "it's an S package with 1kg over the limit")]
+        [InlineData(6, 6, 8, 3, 7, "it's an S package with 2kg over the limit")]
+        [InlineData(6, 4, 9, 4, 9, "it's an S package with 3kg over the limit")]
+        public void Parcel_over_weight_limit_for_size_should_have_higher_cost(int height, int width, int length, int weight, int expected, string because)
+        {
+            var p = new Parcel(height, width, length, weight);
+
+            p.Cost.Should().Be(expected, because);
+        }
     }
 }
