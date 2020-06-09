@@ -23,5 +23,39 @@ namespace CourierKata.Test
             Action a = () => new Parcel(0, 1, 1);
             a.Should().ThrowExactly<ArgumentOutOfRangeException>().WithMessage("Value needs to be positive (Parameter 'height')");
         }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(-27)]
+        [InlineData(-524)]
+        public void Parcel_with_negative_width_should_throw_Argument_out_of_range(int width)
+        {
+            Action a = () => new Parcel(1, width, 1);
+            a.Should().ThrowExactly<ArgumentOutOfRangeException>().WithMessage("Value needs to be positive (Parameter 'width')");
+        }
+
+        [Fact]
+        public void Parcel_with_0_width_should_throw_Argument_out_of_range()
+        {
+            Action a = () => new Parcel(1, 0, 1);
+            a.Should().ThrowExactly<ArgumentOutOfRangeException>().WithMessage("Value needs to be positive (Parameter 'width')");
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(-27)]
+        [InlineData(-524)]
+        public void Parcel_with_negative_length_should_throw_Argument_out_of_range(int length)
+        {
+            Action a = () => new Parcel(1, 1, length);
+            a.Should().ThrowExactly<ArgumentOutOfRangeException>().WithMessage("Value needs to be positive (Parameter 'length')");
+        }
+
+        [Fact]
+        public void Parcel_with_0_length_should_throw_Argument_out_of_range()
+        {
+            Action a = () => new Parcel(1, 1, 0);
+            a.Should().ThrowExactly<ArgumentOutOfRangeException>().WithMessage("Value needs to be positive (Parameter 'length')");
+        }
     }
 }
