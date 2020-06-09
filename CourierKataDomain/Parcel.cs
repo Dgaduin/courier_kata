@@ -35,6 +35,22 @@ namespace CourierKata.Domain
                 return ParcelSize.Invalid;
             }
         }
+
+        public int Cost
+        {
+            get
+            {
+                if (Size == ParcelSize.Xl)
+                    return 25;
+                if (Size == ParcelSize.L)
+                    return 15;
+                if (Size == ParcelSize.M)
+                    return 8;
+                if (Size == ParcelSize.S)
+                    return 3;
+                return -1;
+            }
+        }
     }
 
     public enum ParcelSize
