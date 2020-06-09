@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CourierKata.Domain
 {
@@ -16,8 +17,8 @@ namespace CourierKata.Domain
 
         public int SumOrderItems()
         {
-            int value = 0;
-            TotalCost = 0;
+            int value = Items.Sum(x => x.Cost);
+            TotalCost = value;
             return value;
         }
     }
