@@ -25,5 +25,28 @@ namespace CourierKata.Test
             Action a = () => new HeavyParcel(0);
             a.Should().ThrowExactly<ArgumentOutOfRangeException>().WithMessage("Value needs to be positive (Parameter 'weight')");
         }
+
+
+        [Theory]
+        [InlineData(5)]
+        [InlineData(43)]
+        [InlineData(50)]
+        public void HeavyParcel_in_the_weight_limit_should_have_cost_of_50(int weight)
+        {
+            var parcel = new HeavyParcel(weight);
+
+            parcel.Cost.Should().Be(50);
+        }
+
+        [Theory]
+        [InlineData(54, 54)]
+        [InlineData(67, 67)]
+        [InlineData(90, 90)]
+        public void HeavyParcel_over_the_weight_limit_should_have_cost_of_50_plus_penalty(int weight, int expected)
+        {
+            var parcel = new HeavyParcel(weight);
+
+            parcel.Cost.Should().Be(expected);
+        }
     }
 }
