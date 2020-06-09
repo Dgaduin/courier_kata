@@ -60,6 +60,23 @@ namespace CourierKata.Test
         }
 
         [Theory]
+        [InlineData(-1)]
+        [InlineData(-27)]
+        [InlineData(-524)]
+        public void Parcel_with_negative_weight_should_throw_Argument_out_of_range(int weight)
+        {
+            Action a = () => new Parcel(1, 1, 1, weight);
+            a.Should().ThrowExactly<ArgumentOutOfRangeException>().WithMessage("Value needs to be positive (Parameter 'weight')");
+        }
+
+        [Fact]
+        public void Parcel_with_0_weight_should_throw_Argument_out_of_range()
+        {
+            Action a = () => new Parcel(1, 1, 1, 0);
+            a.Should().ThrowExactly<ArgumentOutOfRangeException>().WithMessage("Value needs to be positive (Parameter 'weight')");
+        }
+
+        [Theory]
         [InlineData(10, 150, 2, 1)]
         [InlineData(140, 3, 45, 1)]
         [InlineData(6, 75, 532, 1)]
