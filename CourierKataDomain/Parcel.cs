@@ -2,15 +2,15 @@
 
 namespace CourierKata.Domain
 {
-    public class Parcell
+    public class Parcel
     {
         public int Height { get; }
         public int Width { get; }
         public int Length { get; }
 
-        public Parcell(int height, int width, int length)
+        public Parcel(int height, int width, int length)
         {
-           
+
         }
     }
 }
