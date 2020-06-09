@@ -14,6 +14,8 @@ namespace CourierKata.Domain
 
             Weight = weight;
             Cost = 50;
+            if (weight > 50)
+                Cost += weight - 50; // We can just set the cost to the weight but this would make it harder if we have to change in the future
         }
     }
 }
