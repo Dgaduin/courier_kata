@@ -8,8 +8,8 @@ namespace CourierKata.Domain
         public int Height { get; }
         public int Width { get; }
         public int Length { get; }
-
-        public Parcel(int height, int width, int length)
+        public int Weight { get; }
+        public Parcel(int height, int width, int length, int weight)
         {
             if (height <= 0) throw new ArgumentOutOfRangeException(nameof(height), "Value needs to be positive");
             if (width <= 0) throw new ArgumentOutOfRangeException(nameof(width), "Value needs to be positive");
