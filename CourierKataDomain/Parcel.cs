@@ -2,7 +2,7 @@
 
 namespace CourierKata.Domain
 {
-    public class Parcel 
+    public class Parcel : IOrderItem
     {
         public int Height { get; }
         public int Width { get; }
