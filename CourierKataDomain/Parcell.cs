@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CourierKataDomain
+namespace CourierKata.Domain
 {
     public class Parcell
     {
