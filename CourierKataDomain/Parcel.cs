@@ -25,13 +25,16 @@ namespace CourierKata.Domain
             {
                 if (Height >= 100 || Width >= 100 || Length >= 100)
                     return ParcelSize.Xl;
-                return ParcelSize.S;
+                if (Height >= 50 || Width >= 50 || Length >= 50)
+                    return ParcelSize.L;
+                return ParcelSize.Invalid;
             }
         }
     }
 
     public enum ParcelSize
     {
+        Invalid = 1,
         S = 2,
         M = 3,
         L = 4,
