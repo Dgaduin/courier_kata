@@ -57,5 +57,20 @@ namespace CourierKata.Test
             Action a = () => new Parcel(1, 1, 0);
             a.Should().ThrowExactly<ArgumentOutOfRangeException>().WithMessage("Value needs to be positive (Parameter 'length')");
         }
+
+        [Theory]
+        [InlineData(10, 150, 2)]
+        [InlineData(140, 3, 45)]
+        [InlineData(6, 75, 532)]
+        [InlineData(10, 100, 2)]
+        [InlineData(100, 3, 45)]
+        [InlineData(6, 20, 100)]
+        public void Parcel_with_a_dimension_over_or_equal_to_100_should_have_size_XL(int height, int width, int length)
+        {
+            var p = new Parcel(height, width, length);
+            p.Size.Should().Be(ParcelSize.Xl);
+        }
+
+
     }
 }
