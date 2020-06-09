@@ -1,14 +1,10 @@
 using System;
 using Xunit;
 
-namespace CourierKataTest
+namespace CourierKata.Test
 {
     public class ParcelTests
     {
-        [Fact]
-        public void Test1()
-        {
-
-        }
+       
     }
 }
