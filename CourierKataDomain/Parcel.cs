@@ -2,7 +2,7 @@
 
 namespace CourierKata.Domain
 {
-    public class Parcel
+    public class Parcel 
     {
         public int Height { get; }
         public int Width { get; }
@@ -51,14 +51,5 @@ namespace CourierKata.Domain
                 return -1;
             }
         }
-    }
-
-    public enum ParcelSize
-    {
-        Invalid = 1,
-        S = 2,
-        M = 3,
-        L = 4,
-        Xl = 5
     }
 }
